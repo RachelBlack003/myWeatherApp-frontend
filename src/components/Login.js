@@ -2,27 +2,35 @@ import React from 'react';
 import { useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 
-function Login() {
-  const [toShoppingList, setToShoppingList] = useState(false)
-  const [name, setName] = useState('');
+//login and weather currently have a similar code setup. They use states
+//to swap between pages. The html needs to be updated to interact with the backend
+//,though
 
-  if(toShoppingList === true){
-    console.log(name)
-    return<Navigate to={`/list`} />;
+function Login() {
+
+  //establishes the use state
+  const [toWeather, setToWeather] = useState(false)
+
+  //changes page if the state is changed
+  if(toWeather === true){
+    console.log("Going to weather page")
+    return<Navigate to={`/weather`} />;
   }
-  
+
+  //default html
   return (
-    <body className={styles.body}>
-      <main className={styles.main}>
-        <form action="/list" method="POST" className={styles.form}>
-        <h1 className={styles.heading}>Please log in with your name</h1>
-        Name: <input type="text" name="name"  onChange={(e) => setName(e.target.value)}/><br/>
-        <div className={styles.button}>
-          <button onClick={() => setToShoppingList(prev => !prev)}>Log in</button>
-        </div>
+    <body>
+      <main>
+        <form action="/weather" method="POST">
+          <h1 className>Please log in</h1>
+          Name: <input type="text" name="name"/><br/>
+          Password: <input type="text" name="name"/><br/>
+          <div>
+            <button onClick={() => setToWeather(prev => !prev)}>Log in</button>
+          </div>
         </form>
-    </main>
-  </body>
+      </main>
+    </body>
   )
 }
 
