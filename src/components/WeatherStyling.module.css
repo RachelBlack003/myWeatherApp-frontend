@@ -1,4 +1,17 @@
 .zipbox {
-    font-size: 3em;
     background-color: aqua;
+    width: 35em;
+    height: 15em;
+}
+
+.weatherbox {
+    background-color: red;
+    width: 35em;
+    height: 15em;
+}
+
+.main {
+    padding-top: 5em;
+    display: flex;
+    justify-content: space-evenly;
 }

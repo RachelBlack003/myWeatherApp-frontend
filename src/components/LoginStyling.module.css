@@ -1,0 +1,35 @@
+.main {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form {
+    background-color: red;
+    width: 50%;
+    height: 50em;
+    margin-top: 3em;
+    margin-left: 4em;
+    margin-right: 1em;
+}
+
+.header {
+    align-self: center;
+    font-size: 1em;
+}
+
+.register {
+    align-self: center;
+}
+
+.sidetext {
+    display: grid;
+    align-content: space-evenly;
+    align-self: center;
+    font-weight: 1000;
+    font-size: 3em;
+    width: 30%;
+    height: 12em;
+    background-color: aquamarine;
+    margin: 1em;
+}
+
