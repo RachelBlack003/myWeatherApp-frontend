@@ -1,36 +1,47 @@
 import React from 'react';
 import { useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
+import axios from "axios";
 
 //login and weather currently have a similar code setup. They use states
 //to swap between pages. The html needs to be updated to interact with the backend
 //,though
 
-function Login() {
+const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
-  //establishes the use state
-  const [toWeather, setToWeather] = useState(false)
+  const handleSubmit = async (e) => {
+      e.preventDefault();
 
-  //changes page if the state is changed
-  if(toWeather === true){
-    console.log("Going to weather page")
-    return<Navigate to={`/weather`} />;
-  }
+      try {
+          const response = await axios.post("/api/auth", { email, password });
 
-  //default html
+          if (response.status === 201) {
+              const { token } = response.data;
+              localStorage.setItem("authToken", token); //store JWT token in local storage
+              setError("");
+              navigate("/weather");
+          }
+      } catch (err) {
+          const message =
+              err.response?.data?.message || "Invalid credentials. Please try again.";
+          setError(message);
+      }
+  };
+
   return (
-    <body>
-      <main>
-        <form action="/weather" method="POST">
-          <h1 className>Please log in</h1>
-          Name: <input type="text" name="name"/><br/>
-          Password: <input type="text" name="name"/><br/>
-          <div>
-            <button onClick={() => setToWeather(prev => !prev)}>Log in</button>
-          </div>
-        </form>
-      </main>
-    </body>
+    <div>
+      <h1>Please log in</h1>
+      <h3>{error}</h3>
+      <form onSubmit={handleSubmit}>
+        Email: <input type="email" placeholder="Enter email" value={email} onChange={(e) => setEmail(e.target.value)} required /><br />
+        Password: <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required /><br />
+        <button type="submit">Log in</button>
+      </form>
+    </div>
   )
 }
 

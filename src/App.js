@@ -1,10 +1,10 @@
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import ProtectedRoute from "./ProtectedRoute.js";
+import Login from './components/Login.js';
+import Register from './components/Register.js'
+import Weather from './components/Weather.js';
 import './App.css';
-import { BrowserRouter } from 'react-router-dom';
-import { Routes } from 'react-router-dom';
-import { Route } from 'react-router-dom';
-import Login from './components/Login';
-import Weather from './components/Weather';
-
 
 //app.js is just used to set up the routes. The other js files which set up the pages
 //use navigate to navigate the website.
@@ -12,13 +12,13 @@ import Weather from './components/Weather';
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
+      <Router>
         <Routes>
-          <Route path="/" element={<Login/>} />
-          <Route path="/login" element={<Weather/>} />
-          <Route path="/weather" element={<Weather/>} />
+          <Route path="/" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/weather" element={<ProtectedRoute element={<Weather />} />}/>
         </Routes>
-     </BrowserRouter>
+      </Router>
     </div>
   );
 }
