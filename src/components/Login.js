@@ -1,47 +1,52 @@
 import React from 'react';
 import { useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
-import axios from "axios";
+
+function Weather() {
+
+    //TODO: Implement fetching weather from /api/weather endpoint
+    return (
+    <div>
+        <h1>Weather forecast will go here.</h1>
+    </div>
+  )
+}
+
+
+export default Weather
+import React from 'react';
+import { useState } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 //login and weather currently have a similar code setup. They use states
 //to swap between pages. The html needs to be updated to interact with the backend
 //,though
 
-const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const navigate = useNavigate();
+function Login() {
+    
+    //establishes the use state
+    const [toLogin, setToLogin] = useState(false)
+    //changes page when the state is changed
+    if(toLogin === true){
+        return<Navigate to={`/`} />;
+    }
 
-  const handleSubmit = async (e) => {
-      e.preventDefault();
+    //default html
+    return (
+    <body>
+        <main>
+            <form action="/" method="POST">
+                <div>
+                    <h1>Please input your zip code</h1>
+                    Zipcode <input type="numbeer" name="name"/><br/>
+                    <button onClick={() => setToLogin(prev => !prev)}>Log out</button>
+                </div>
+                <div id="weatherbox">
 
-      try {
-          const response = await axios.post("/api/auth", { email, password });
-
-          if (response.status === 201) {
-              const { token } = response.data;
-              localStorage.setItem("authToken", token); //store JWT token in local storage
-              setError("");
-              navigate("/weather");
-          }
-      } catch (err) {
-          const message =
-              err.response?.data?.message || "Invalid credentials. Please try again.";
-          setError(message);
-      }
-  };
-
-  return (
-    <div>
-      <h1>Please log in</h1>
-      <h3>{error}</h3>
-      <form onSubmit={handleSubmit}>
-        Email: <input type="email" placeholder="Enter email" value={email} onChange={(e) => setEmail(e.target.value)} required /><br />
-        Password: <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required /><br />
-        <button type="submit">Log in</button>
-      </form>
-    </div>
+                </div>
+            </form>
+        </main>
+    </body>
   )
 }
 
