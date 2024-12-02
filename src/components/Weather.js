@@ -20,11 +20,13 @@ function Login() {
     <body>
         <main>
             <form action="/" method="POST">
-                <h1 className>Please log in</h1>
-                Name: <input type="text" name="name"/><br/>
-                Password: <input type="text" name="name"/><br/>
                 <div>
-                <button onClick={() => setToLogin(prev => !prev)}>Log out</button>
+                    <h1>Please input your zip code</h1>
+                    Zipcode <input type="numbeer" name="name"/><br/>
+                    <button onClick={() => setToLogin(prev => !prev)}>Log out</button>
+                </div>
+                <div id="weatherbox">
+
                 </div>
             </form>
         </main>
