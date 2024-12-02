@@ -16,7 +16,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/weather" element={<ProtectedRoute element={<Weather />} />}/>
+          {/* temporary easy path to the weather page */}
+          <Route path="/weather" element={<Weather />}/>
+          {/* <Route path="/weather" element={<ProtectedRoute element={<Weather />} />}/> */}
         </Routes>
       </Router>
     </div>
