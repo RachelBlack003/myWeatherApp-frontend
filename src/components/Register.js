@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Form, Button, Alert } from "react-bootstrap";
+import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ArrowLeft } from "react-bootstrap-icons";
 import Header from "./Header.js";
+import styles from './RegisterStyling.module.css'
 
 const Register = () => {
     const [email, setEmail] = useState("");
@@ -40,20 +41,21 @@ const Register = () => {
     };
 
     return (
-        <div className="d-flex justify-content-center align-items-center vh-100 bg-body">
+        <div className="d-flex justify-content-center align-items-center vh-100" style={{ backgroundImage: "url(/assets/mainBg.jpg)", backgroundSize: "cover", backgroundPosition: "center center", backgroundRepeat: "no-repeat" }}>
+            <Container className={styles.registerContainer}>
             <div className="p-4 bg-secondary-subtle rounded shadow">
                 <a href="/" className="d-flex align-items-center mb-3 navLink">
                     <ArrowLeft size={20} className="me-2" />
                     Back to Login
                 </a>
                 <Header />
-                <h3 className="text-center mb-4">Register for myWeather</h3>
+                <h3 className="text-center mb-4">Create an Account</h3>
 
                 {error && <Alert variant="danger">{error}</Alert>}
 
                 <Form onSubmit={handleSubmit}>
-                    <Form.Group controlId="formFirstName" className="mb-3">
-                        <Form.Label>First Name</Form.Label>
+                    <Form.Group controlId="formFirstName" className="mb-3 d-flex flex-column">
+                        <Form.Label className="text-start">First Name</Form.Label>
                         <Form.Control
                             type="text"
                             placeholder="Enter first name"
@@ -63,8 +65,8 @@ const Register = () => {
                         />
                     </Form.Group>
 
-                    <Form.Group controlId="formLastName" className="mb-3">
-                        <Form.Label>Last Name</Form.Label>
+                    <Form.Group controlId="formLastName" className="mb-3 d-flex flex-column">
+                        <Form.Label className="text-start">Last Name</Form.Label>
                         <Form.Control
                             type="text"
                             placeholder="Enter last name"
@@ -74,8 +76,8 @@ const Register = () => {
                         />
                     </Form.Group>
 
-                    <Form.Group controlId="formEmail" className="mb-3">
-                        <Form.Label>Email address</Form.Label>
+                    <Form.Group controlId="formEmail" className="mb-3 d-flex flex-column">
+                        <Form.Label className="text-start">Email address</Form.Label>
                         <Form.Control
                             type="email"
                             placeholder="Enter email"
@@ -85,8 +87,8 @@ const Register = () => {
                         />
                     </Form.Group>
 
-                    <Form.Group controlId="formPassword" className="mb-3">
-                        <Form.Label>Password</Form.Label>
+                    <Form.Group controlId="formPassword" className="mb-3 d-flex flex-column">
+                        <Form.Label className="text-start">Password</Form.Label>
                         <Form.Control
                             type="password"
                             placeholder="Password"
@@ -101,6 +103,7 @@ const Register = () => {
                     </Button>
                 </Form>
             </div>
+            </Container>
         </div>
     );
 };
