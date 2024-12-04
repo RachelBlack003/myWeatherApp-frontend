@@ -77,7 +77,7 @@ const Login = () => {
                     <Col className={styles.loginAside} md={6}>
                         <h1>Any time.</h1>
                         <h1>Anywhere.</h1>
-                        <h1>Find out<br />whats up.</h1>
+                        <h1>Find out<br />what's up.</h1>
                     </Col>
                 </Row>
             </Container>
