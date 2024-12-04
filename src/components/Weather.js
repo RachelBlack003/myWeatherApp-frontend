@@ -38,6 +38,7 @@ const Weather = () => {
                 setWeatherData(response.data); // Set the new data after successful fetch
             }
         } catch (err) {
+            console.log(err);
             setError("Failed to fetch weather data. Please try again.");
         } finally {
             setLoading(false);
@@ -73,10 +74,8 @@ const Weather = () => {
                 <Header />
                 <h3 className="text-center mb-4">Current Weather</h3>
 
-                {error && <Alert variant="danger">{error}</Alert>}
-
                 <Form onSubmit={handleSubmit}>
-                    <Form.Group controlId="formZip" className="mb-3">
+                    <Form.Group controlId="formZip" className="mb-3 d-flex flex-column">
                         <Form.Label className="text-start">Enter Zip Code</Form.Label>
                         <Form.Control
                             type="text"
@@ -98,6 +97,8 @@ const Weather = () => {
                     </div>
                 )}
 
+                {error && <Alert variant="danger" className="mb-0 mt-3">{error}</Alert>}
+
                 {weatherData && (
                     <Card className="mt-4">
                         <Card.Body>
@@ -118,11 +119,11 @@ const Weather = () => {
                             </div>
                             <div className="d-flex justify-content-between mt-3">
                                 <div>
-                                    <strong>Humidity:</strong> {weatherData.main.humidity}%<br/>
+                                    <strong>Humidity:</strong> {weatherData.main.humidity}%<br />
                                     <strong>Wind:</strong> {weatherData.wind.speed} mph {degToCompass(weatherData.wind.deg)}
                                 </div>
                                 <div>
-                                    <strong>Sunrise:</strong> {new Date(weatherData.sys.sunrise * 1000).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}<br/>
+                                    <strong>Sunrise:</strong> {new Date(weatherData.sys.sunrise * 1000).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}<br />
                                     <strong>Sunset:</strong> {new Date(weatherData.sys.sunset * 1000).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}
                                 </div>
                             </div>
