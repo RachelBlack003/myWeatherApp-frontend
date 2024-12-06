@@ -64,8 +64,37 @@ const Weather = () => {
         return arr[(val % 16)];
     }
 
+    const tempToImage = () => {
+        let image;
+        let temp;
+        if(weatherData != null)
+        {
+            console.log("not null");
+            temp = weatherData.main.temp;
+        }
+        switch (true) {
+            case temp >= 90:
+                image = "url(/assets/hotBg.jpg)";
+                break;
+            case temp >= 60:
+                image = "url(/assets/warmBg.jpg)";
+                break;
+            case temp >= 33:
+                image = "url(/assets/coolBg.jpg)";
+                break;
+            case temp < 33:
+                image = "url(/assets/coldBg.jpg)";
+                break;
+            default:
+                image = "url(/assets/mainBg.jpg)";
+                break;
+        }
+        return image
+
+    }
+
     return (
-        <div className="d-flex justify-content-center align-items-center vh-100 bg-body">
+        <div className="d-flex justify-content-center align-items-center vh-100 bg-body" style={{ backgroundImage: tempToImage(), backgroundSize: "cover", backgroundPosition: "center center", backgroundRepeat: "no-repeat" }}>
             <div className="p-4 bg-secondary-subtle rounded shadow" style={{ width: "500px" }}>
                 <a href="#" onClick={handleLogout} className="d-flex align-items-center mb-3 navLink">
                     <BoxArrowRight size={20} className="me-2" />
