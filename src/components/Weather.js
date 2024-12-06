@@ -64,6 +64,7 @@ const Weather = () => {
         return arr[(val % 16)];
     }
 
+    //just a quick variable to put in to automaticly assign a background image
     const tempToImage = () => {
         let image;
         let temp;
